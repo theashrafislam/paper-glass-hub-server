@@ -36,7 +36,9 @@ async function run() {
     })
 
     app.get('/craftItems', async(req, res) => {
-        
+        const cursor = paperCollection.find();
+        const result = await cursor.toArray();
+        res.send(result);
     })
 
 
