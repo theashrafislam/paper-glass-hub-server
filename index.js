@@ -27,12 +27,25 @@ async function run() {
     // await client.connect();
 
     const paperCollection = client.db("paperCollection").collection("paperData");
+    const artAndCarftItemCollection = client.db("paperCollection").collection("artCarftData");
 
 
     app.post('/craftItems', async (req, res) => {
       const data = req.body;
       const result = await paperCollection.insertOne(data);
       res.send(result)
+    })
+
+    app.post('/artAndCarftItems', async(req, res) => {
+      const data = req.body;
+      const result = await artAndCarftItemCollection.insertOne(data);
+      res.send(result)
+    })
+
+    app.get('/artAndCarftItems', async (req, res) => {
+      const cursor = artAndCarftItemCollection.find();
+      const result = await cursor.toArray();
+      res.send(result);
     })
 
     app.get('/craftItems', async (req, res) => {
