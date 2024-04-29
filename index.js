@@ -6,7 +6,15 @@ const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 const port = process.env.POST || 5000;
 
 //middleware
-app.use(cors())
+app.use(
+  cors({
+    origin: [
+      "http://localhost:5173",
+      "https://paper-glass-hub.web.app",
+      "https://paper-glass-hub.firebaseapp.com",
+    ],
+  })
+);
 app.use(express.json())
 { console.log(process.env.DB_USER); }
 { console.log(process.env.DB_PASS); }
